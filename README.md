@@ -1,4 +1,4 @@
-## Optimal Discounted-Cost Policies for Continuous-Time SIS-Type Epidemic Models via Markov Decision Processes
+## Optimal Discounted-Cost Policies for CTMC SIS-Type Epidemic Models via Markov Decision Processes
 
 Author: William C. C. Simms
 
@@ -8,7 +8,7 @@ Project Advisors: Dante M. Lopez and Hélène Guérin
 
 This repository contains the Python code used to generate the figures, tables, and additional numerical results presented in the report.
 
-The project studies discounted-cost intervention policies for continuous-time Markov decision processes motivated by SIS epidemic models.
+The project studies discounted-cost intervention policies for CTMC Markov decision processes motivated by SIS epidemic models.
 
 ## Organisation
 
