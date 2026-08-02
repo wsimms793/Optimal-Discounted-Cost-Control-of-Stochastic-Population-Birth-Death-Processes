@@ -4,5 +4,5 @@ This folder contains all the Python code used to produce the figures in the fina
 
 # Organization
 Figure - "x" - "y"
-Indicates that this was the code used to produce Figure number "x" sub figure "y".
+Indicates that this was the code used to produce Figure number "x" sub figure "y" in addition to Figures that compliment the result, e.g. convergence plots.
 Figures named descriptively were not used in the final piece.
