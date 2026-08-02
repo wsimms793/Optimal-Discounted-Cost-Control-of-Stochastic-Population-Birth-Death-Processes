@@ -2,7 +2,8 @@
 
 This folder contains all figures used in the final article in addition to figures used while constructing the article.
 
-## Organization
+# Organization
+Figure - "x" - "y"
+Indicates that this was the code used to produce Figure number "x" sub figure "y" in addition to Figures that compliment the result, e.g. convergence plots.
 
-- Figures are named in accordance with the final article.
-- Figures with "-exc" at the end of their file name indicate that they were not included in the final report.
+Figures named descriptively were not used in the final piece.
