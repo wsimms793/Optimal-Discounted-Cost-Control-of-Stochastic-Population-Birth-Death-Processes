@@ -319,5 +319,5 @@ for k in range(len(space)):
 plt.contourf(states, space, diff, levels=50, cmap = 'Reds')
 plt.colorbar(label="Excess cost over the optimal policy")
 plt.xlabel("State, i")
-plt.ylabel("Threshold m: prevent spontatnous infection from state m onward")
+plt.ylabel(r"Threshold $m$: $\epsilon = 1$ for states before $m$")
 plt.show()
