@@ -199,7 +199,7 @@ for k in range(len(spacing)):
     # allow immigration for i < m
     # prevent immigration for i >= m
     D_pol = np.ones(s)
-    D_pol[m:s] = 0
+    D_pol[m:] = 0
 
     # Cost corresponding to this policy.
     V_pol = cost_policy(D_pol, P, C, alpha, s, n, lam, mu)
