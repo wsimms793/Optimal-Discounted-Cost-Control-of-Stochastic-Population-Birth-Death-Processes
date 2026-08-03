@@ -242,8 +242,6 @@ while True:
         if D >= alpha * current_value:
             f_new[i] = f[i]
 
-    # First action remains fixed as zero
-    f_new[0] = 0
 
     #Stopping condition
     if np.array_equal(f_new, f):
