@@ -7,10 +7,9 @@
 #Cost constant for remaining in a state, Number of iterations used for optimization,
 #Number of considered states, Number of plotted states]
 
-lam, mu, eps, alpha, P, C, n, s, s_plot = [
+lam, mu, alpha, P, C, n, s, s_plot = [
     0.5,
     1.0,
-    0.2,
     1.0,
     200,
     1000,
