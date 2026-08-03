@@ -282,7 +282,7 @@ for k in range(len(spacing)):
     # No detection for i < m
     # detect for i >= m
     D_pol = np.zeros(s)
-    D_pol[m:s] = 1
+    D_pol[m:] = 1
 
     # There is no reason to apply detection at state 0.
     D_pol[0] = 0
