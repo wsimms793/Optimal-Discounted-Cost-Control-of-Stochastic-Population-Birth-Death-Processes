@@ -218,9 +218,6 @@ while True:
         else:
             f_new[i] = 0
 
-    # Action at state 0 is fixed as zero
-    f_new[0] = 0
-
     #Check whether each proposed action is an improvement
     for i in range(N+1):
 
