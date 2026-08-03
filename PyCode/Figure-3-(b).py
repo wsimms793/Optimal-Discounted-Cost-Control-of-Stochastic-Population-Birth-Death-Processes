@@ -298,7 +298,7 @@ for k in range(len(space)):
 
   #Proposed policy.
   F_pol = np.zeros(N+1)
-  F_pol[m:N] = 1
+  F_pol[m:] = 1
   F_pol[N] = 0
 
   J_pol = J(
