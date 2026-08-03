@@ -280,8 +280,8 @@ for k in range(len(spacing)):
     m = spacing[k]
 
     # Policy:
-    # allow immigration for i < m
-    # prevent immigration for i >= m
+    # No detection for i < m
+    # detect for i >= m
     D_pol = np.zeros(s)
     D_pol[m:s] = 1
 
