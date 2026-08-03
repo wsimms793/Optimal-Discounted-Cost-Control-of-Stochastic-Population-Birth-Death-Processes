@@ -319,5 +319,5 @@ for k in range(len(space)):
 plt.contourf(states, space, diff, levels=250, cmap = 'cividis')
 plt.colorbar(label="Excess cost over the optimal policy")
 plt.xlabel("State, i")
-plt.ylabel(r"Threshold $m$: $\epsilon = 1$ for states before $m$")
+plt.ylabel(r"Threshold $m$: $\epsilon = 1$ for states after $m \leq N-1$")
 plt.show()
