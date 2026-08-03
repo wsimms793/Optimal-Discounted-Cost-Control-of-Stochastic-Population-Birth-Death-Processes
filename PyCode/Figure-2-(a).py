@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 #Parameters
 
-#Define [Birth rate, Death rate, Epsilon,
+#Define [Birth rate, Death rate,
 #Discount factor, Cost constant for remaining in a state,
 #Cost constant for remaining in a state, Number of iterations used for optimization,
 #Number of considered states, Number of plotted states]
