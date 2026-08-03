@@ -11,8 +11,15 @@ import matplotlib.pyplot as plt
 #Cost constant for remaining in a state, Number of iterations used for optimization,
 #Number of considered states, Number of plotted states]
 
-beta, gamma, N, alpha, b, P, C = [
-    10, 4, 100, 0.8, 0.3, 600, 10
+lam, mu, alpha, P, C, n, s, s_plot = [
+    0.5,
+    1.0,
+    1.0,
+    200,
+    100,
+    5000,
+    250,
+    100,
 ]
 
 #################################################################################
