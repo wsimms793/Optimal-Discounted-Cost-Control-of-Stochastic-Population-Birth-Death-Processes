@@ -197,8 +197,6 @@ for beta, gamma, N, alpha, b, P, C in parameters:
     F = [f.copy()]
     K = [J_f.copy()]
 
-    c = 0
-
 #################################################################################
     # Policy iteration
 
@@ -264,8 +262,6 @@ for beta, gamma, N, alpha, b, P, C in parameters:
         # Append complete policy and discounted cost
         F.append(f.copy())
         K.append(J_f.copy())
-
-        c += 1
 
     #################################################################################
     # Results for this parameter set
