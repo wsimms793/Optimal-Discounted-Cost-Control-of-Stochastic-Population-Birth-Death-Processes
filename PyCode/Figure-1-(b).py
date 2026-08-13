@@ -216,7 +216,7 @@ for k in range(len(spacing)):
 plt.contourf(states, spacing, diff, levels=50, cmap= "inferno")
 plt.colorbar(label="Excess cost over the optimal policy")
 plt.xlabel("State, i")
-plt.ylabel(r"Threshold $m$: $\epsilon = 0$ from state $m$ onward")
+plt.ylabel(r"Threshold $m$: $a= 0$ from state $m$ onward")
 plt.show()
 
 # Print optimal decisions for the plotted states.
