@@ -3,6 +3,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #################################################################################
+## In our final table we took gamma = gamma + b; as the b term was later combined into gamma.
+#################################################################################
 
 parameters = [
     # beta, gamma, N, alpha, b, P, C
