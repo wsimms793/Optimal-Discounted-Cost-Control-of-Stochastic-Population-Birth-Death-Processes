@@ -315,7 +315,7 @@ plt.colorbar(
 )
 plt.xlabel("State, i")
 plt.ylabel(
-    "Threshold m: d = 1 from state m onward"
+    "Threshold m: a = 1 from state m onward"
 )
 plt.show()
 
