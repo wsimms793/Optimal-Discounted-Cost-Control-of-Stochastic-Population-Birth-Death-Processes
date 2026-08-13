@@ -314,5 +314,5 @@ for k in range(len(space)):
 plt.contourf(states, space, diff, levels=250, cmap = 'plasma')
 plt.colorbar(label="Excess cost over the optimal policy")
 plt.xlabel("State, i")
-plt.ylabel("Threshold m: d = 1 from state m onward")
+plt.ylabel("Threshold m: a = 1 from state m onward")
 plt.show()
