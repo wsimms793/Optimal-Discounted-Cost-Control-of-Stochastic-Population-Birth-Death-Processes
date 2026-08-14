@@ -1,4 +1,4 @@
-## Optimal Discounted-Cost Policies for CTMC SIS-Type Epidemic Models via Markov Decision Processes
+## Optimal Discounted-Cost Control of Stochastic Population Birth–Death Processes: Applications to Pest Control
 
 Author: William C. C. Simms
 
