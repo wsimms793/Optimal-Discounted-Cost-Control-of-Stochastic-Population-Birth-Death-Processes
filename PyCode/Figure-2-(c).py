@@ -323,66 +323,76 @@ plt.show()
 print(D_opt_plot)
 
 #################################################################################
+# Plot numerical against analytic upper and lower bounds.
 
-#Compute the Bellman residual.
+# Detection/catastrophe rate.
+d_rate = 1.0
 
-# Compute left-hand side of the Bellman fixed-point equation.
-Vect_1 = alpha * V_opt_plot
+# Lower bound on J*.
+J_lower = (
+    states * P
+    / (alpha + mu - lam + d_rate)
+)
 
-# Initialize right-hand side vector.
-Vect_2 = np.zeros(s_plot)
+# Two components of the upper bound.
+J_upper_1 = (
+    states * P
+    / (alpha + mu - lam + d_rate)
+    + C / alpha
+)
 
-# Loop through all plotted states to compute Bellman residual.
-for i in range(s_plot):
+J_upper_2 = (
+    states * P
+    / (alpha + mu - lam)
+)
 
-    # Retrieve optimal action and rates for state i.
-    d = D_opt_plot[i]
-    forw, back, detect, diag = rates(
-        i,
-        d,
-        lam,
-        mu
-    )
+# Upper bound is the minimum of the two.
+J_upper = np.minimum(
+    J_upper_1,
+    J_upper_2
+)
 
-    # Lower boundary Bellman evaluation.
-    if i == 0:
+# Plot numerical value and bounds.
+plt.plot(
+    states,
+    V_opt_plot,
+    linestyle="--",
+    linewidth=2.5,
+    label=r"Numerical $J_\alpha^*$"
+)
 
-        Vect_2[i] = i * P + C * d
+plt.plot(
+    states,
+    J_lower,
+    linestyle="-",
+    label="Lower bound"
+)
 
-        Vect_2[i] += (
-            V_opt[i + 1] - V_opt[i]
-        ) * forw
+plt.plot(
+    states,
+    J_upper,
+    linestyle="-",
+    label="Upper bound"
+)
 
-    # Intermediate and upper states Bellman evaluation.
-    else:
-
-        Vect_2[i] = i * P + C * d
-        Vect_2[i] += (
-            V_opt[i + 1] - V_opt[i]
-        ) * forw
-        Vect_2[i] += (
-            V_opt[i - 1] - V_opt[i]
-        ) * back
-        Vect_2[i] += (
-            V_opt[0] - V_opt[i]
-        ) * detect
-
-
-# Compute absolute residual difference.
-Diff = Vect_1 - Vect_2
-Diff = np.abs(Diff)
-
-# Print maximum residual and full residual vector.
-print(np.max(Diff))
-print(Diff)
-
-#Array for states.
-states = np.arange(0, s_plot)
+plt.xlabel("State, $i$")
+plt.ylabel("Discounted cost")
+plt.legend()
+plt.show()
 
 #################################################################################
+#Maximum distance.
 
-# Plotting the residuals to verify Bellman optimality.
-plt.plot(states, Diff)
-plt.xlabel("State, i")
-plt.ylabel("Residual")
-plt.show()
+# Distance from J* to the lower bound.
+diff_lower = V_opt_plot - J_lower
+
+# Distance from the upper bound to J*.
+diff_upper = J_upper - V_opt_plot
+
+# Maximum gaps.
+max_diff_lower = np.max(diff_lower)
+max_diff_upper = np.max(diff_upper)
+
+print("Maximum distance above lower bound:", max_diff_lower)
+
+print("Maximum distance below upper bound:", max_diff_upper)
