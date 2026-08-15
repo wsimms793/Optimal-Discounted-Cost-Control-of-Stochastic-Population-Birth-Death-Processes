@@ -1,3 +1,4 @@
+from matplotlib.lines import lineStyles
 ##    Importing Relavent Packages   ##
 import numpy as np
 import matplotlib.pyplot as plt
@@ -268,4 +269,19 @@ states = np.arange(0, s_plot)
 plt.plot(states, Diff)
 plt.xlabel("State, i")
 plt.ylabel("Residual")
+plt.show()
+
+
+# Anayaltic solution when f_0(i) is optimal
+J_1_opt_plot = (states * P) / (alpha + mu - lam) + (C / alpha)
+
+# Anayaltic solution when f_1(i) is optimal
+J_0_opt_plot = P * (states + (1 / (lam + mu))) * (1 / (alpha + mu - lam)) - (P / (alpha * (lam - mu)))
+
+plt.plot(states, V_opt_plot, color='red', linestyle = '--', label='Numerical V_opt')
+plt.plot(states, J_1_opt_plot, color='blue',linestyle='--', label='J_opt')
+
+plt.xlabel("State, i")
+plt.ylabel("Optimal cost")
+plt.legend()
 plt.show()
