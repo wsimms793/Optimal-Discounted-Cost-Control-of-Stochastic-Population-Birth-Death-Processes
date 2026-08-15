@@ -279,7 +279,7 @@ J_1_opt_plot = (states * P) / (alpha + mu - lam) + (C / alpha)
 J_0_opt_plot = P * (states + (1 / (lam + mu))) * (1 / (alpha + mu - lam)) - (P / (alpha * (lam - mu)))
 
 plt.plot(states, V_opt_plot, color='red', linestyle = '--', label='Numerical V_opt')
-plt.plot(states, J_1_opt_plot, color='blue',linestyle='--', label='J_opt')
+plt.plot(states, J_1_opt_plot, color='blue',linestyle='-', label='J_opt')
 
 plt.xlabel("State, i")
 plt.ylabel("Optimal cost")
