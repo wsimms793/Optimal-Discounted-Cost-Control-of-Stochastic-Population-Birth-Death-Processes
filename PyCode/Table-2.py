@@ -284,10 +284,9 @@ for beta, gamma, N, alpha, b, P, C in parameters:
 
 
     print("Beta =", beta)
-    print("Gamma =", gamma)
+    print("Gamma =", gamma + b)
     print("N =", N)
     print("Alpha =", alpha)
-    print("b =", b)
     print("P =", P)
     print("C =", C)
     print("Approximate m =", approximate_m)
