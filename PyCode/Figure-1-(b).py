@@ -245,7 +245,7 @@ plt.plot(
     J_f1_plot,
     color="blue",
     linestyle="-",
-    label=r"$J_\alpha(i,f_0)$",
+    label=r"$J_\alpha(i,f_1)$",
 )
 
 
