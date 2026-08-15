@@ -3,28 +3,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 #################################################################################
-## In our final table we took gamma = gamma + b; as the b term was later combined into gamma.
-#################################################################################
 
 parameters = [
-    # beta, gamma, N, alpha, b, P, C
-    [4.0, 4.0, 100, 0.30, 0.5, 700,  100],
-    [1.0, 1.0, 100, 0.20, 0.2, 700,  200],
-    [1.5, 1.5, 100, 0.10, 0.3, 500,  300],
-    [4.0, 4.0, 100, 0.40, 0.5, 200,  400],
-    [2.0, 2.0, 100, 0.45, 0.4, 100,  500],
-    [0.5, 0.5, 100, 0.20, 0.3, 350,  600],
-    [1.0, 1.0, 100, 0.10, 0.2,  20,  700],
-    [3.0, 3.0, 100, 0.40, 0.4, 100,  800],
-    [5.0, 5.0, 100, 0.45, 0.5, 200,  900],
-    [2.0, 2.0, 100, 0.45, 0.3, 500, 1000],
+    # beta, gamma, N, alpha, P, C
+    [4.0, 4.5, 100, 0.30, 700,  100],
+    [1.0, 1.2, 100, 0.20, 700,  200],
+    [1.5, 1.8, 100, 0.10, 500,  300],
+    [4.0, 4.5, 100, 0.40, 200,  400],
+    [2.0, 2.4, 100, 0.45, 100,  500],
+    [0.5, 0.8, 100, 0.20, 350,  600],
+    [1.0, 1.2, 100, 0.10,  20,  700],
+    [3.0, 3.4, 100, 0.40, 100,  800],
+    [5.0, 5.5, 100, 0.45, 200,  900],
+    [2.0, 2.3, 100, 0.45, 500, 1000],
 ]
 
 #################################################################################
 #Function for calculating rates
 
 
-def rates(i, beta, gamma, N, b,d):
+def rates(i, beta, gamma, N, d):
 
     #State i = 0
     if i == 0:
@@ -32,23 +30,24 @@ def rates(i, beta, gamma, N, b,d):
         back = 0
         same = 0
         return forw, back, same
+
     # State i = N
     if i == N:
         forw = 0
-        back = (b + gamma) * i
+        back = gamma * i
         same = -back - d
         return forw, back, same
 
     # General state
     forw = beta * i * (N - i) / N
-    back = (b + gamma) * i
+    back = gamma * i
     same = -forw - back - d
     return forw, back, same
 
 #################################################################################
 #Construct generator matrix
 
-def generator(beta, gamma, N, b, f):
+def generator(beta, gamma, N, f):
 
     matrix = np.zeros((N + 1, N + 1))
 
@@ -58,7 +57,6 @@ def generator(beta, gamma, N, b, f):
             beta,
             gamma,
             N,
-            b,
             f[i]
         )
 
@@ -69,20 +67,21 @@ def generator(beta, gamma, N, b, f):
 
             elif j == i - 1:
                 if i == 1:
-                  matrix[i,j] = back + f[i]
+                    matrix[i,j] = back + f[i]
                 else:
-                  matrix[i, j] = back
+                    matrix[i, j] = back
 
             elif j == i + 1:
                 matrix[i, j] = forw
+
             elif j == 0:
                 if i != 0 and i != 1:
-                  matrix[i,j] = f[i]
+                    matrix[i,j] = f[i]
 
     return matrix
 
 
-  #################################################################################
+#################################################################################
 #Cost array under a policy
 
 
@@ -99,13 +98,12 @@ def cost(P, C, f, N):
 #Discounted cost
 
 
-def J(alpha, f, beta, b, N, gamma, P, C):
+def J(alpha, f, beta, N, gamma, P, C):
 
     Q = generator(
         beta,
         gamma,
         N,
-        b,
         f
     )
 
@@ -130,7 +128,6 @@ def proposal_cost(
     a,
     f,
     beta,
-    b,
     N,
     gamma,
     P,
@@ -145,7 +142,6 @@ def proposal_cost(
         beta,
         gamma,
         N,
-        b,
         a
     )
 
@@ -203,7 +199,7 @@ def proposal_cost(
 # Run policy iteration for each parameter set
 
 
-for beta, gamma, N, alpha, b, P, C in parameters:
+for beta, gamma, N, alpha, P, C in parameters:
 
 #############################################################################
     # Initial policy
@@ -221,7 +217,6 @@ for beta, gamma, N, alpha, b, P, C in parameters:
         alpha,
         f,
         beta,
-        b,
         N,
         gamma,
         P,
@@ -264,7 +259,6 @@ for beta, gamma, N, alpha, b, P, C in parameters:
                 f_new[i],
                 f,
                 beta,
-                b,
                 N,
                 gamma,
                 P,
@@ -295,7 +289,6 @@ for beta, gamma, N, alpha, b, P, C in parameters:
             alpha,
             f,
             beta,
-            b,
             N,
             gamma,
             P,
@@ -325,7 +318,7 @@ for beta, gamma, N, alpha, b, P, C in parameters:
     approximate_m = min(
         int(
             np.ceil(
-                (N * (b + gamma - beta) / beta)
+                (N * (gamma - beta) / beta)
                 * (
                     np.exp(C * beta / (P * N)) - 1
                 )
@@ -333,11 +326,12 @@ for beta, gamma, N, alpha, b, P, C in parameters:
         ),
         N
     )
+
 #############################################################################
     # Print results
 
     print("Beta =", beta)
-    print("Gamma =", gamma + b)
+    print("Gamma =", gamma)
     print("N =", N)
     print("Alpha =", alpha)
     print("P =", P)
