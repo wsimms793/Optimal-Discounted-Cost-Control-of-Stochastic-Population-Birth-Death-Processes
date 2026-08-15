@@ -222,66 +222,43 @@ plt.show()
 # Print optimal decisions for the plotted states.
 print(D_opt_plot)
 
+##################################################################################
 
-#################################################################################
+#Plots of Anayltic Vs Numeric.
 
-#Compute the Bellman residual.
+# Analytic solution when f_0(i) = 0 is optimal.
+J_f1_plot = (
+    P * (states + 1 / (lam - mu)) / (alpha + mu - lam)
+    - (P * 1) / (alpha * (lam - mu)))
 
-# Compute left-hand side of the Bellman fixed-point equation.
-Vect_1 = alpha * V_opt_plot
+plt.plot(
+    states,
+    V_opt_plot,
+    color="red",
+    linestyle="--",
+    linewidth=2.5,
+    label="Numerical $V^*$",
+)
 
-# Initialize right-hand side vector.
-Vect_2 = np.zeros(s_plot)
-
-# Loop through all plotted states to compute Bellman residual.
-for i in range(s_plot):
-
-    # Retrieve optimal action and rates for state i.
-    a = D_opt_plot[i]
-    forw, back, diag = rates(i, a, lam, mu)
-
-    # Lower boundary Bellman evaluation.
-    if i == 0:
-        Vect_2[i] = i * P + C * (1 - a)
-        Vect_2[i] += (V_opt[i + 1] - V_opt[i]) * forw
-
-    # Intermediate and upper states Bellman evaluation.
-    else:
-        Vect_2[i] = i * P + C * (1 - a)
-        Vect_2[i] += (V_opt[i + 1] - V_opt[i]) * forw
-        Vect_2[i] += (V_opt[i - 1] - V_opt[i]) * back
+plt.plot(
+    states,
+    J_f1_plot,
+    color="blue",
+    linestyle="-",
+    label=r"$J_\alpha(i,f_0)$",
+)
 
 
-# Compute absolute residual difference.
-Diff = Vect_1 - Vect_2
-Diff = np.abs(Diff)
-
-# Print maximum residual and full residual vector.
-print(np.max(np.abs(Diff)))
-print(Diff)
-
-#Array for states.
-states = np.arange(0, s_plot)
-
-#################################################################################
-
-# Plotting the residuals to verify Bellman optimality.
-plt.plot(states, Diff)
-plt.xlabel("State, i")
-plt.ylabel("Residual")
-plt.show()
-
-
-# Anayaltic solution when f_0(i) is optimal
-J_1_opt_plot = (states * P) / (alpha + mu - lam) + (C / alpha)
-
-# Anayaltic solution when f_1(i) is optimal
-J_0_opt_plot = P * (states + (1 / (lam + mu))) * (1 / (alpha + mu - lam)) - (P / (alpha * (lam - mu)))
-
-plt.plot(states, V_opt_plot, color='red', linestyle='--',linewidth=2.5, label='Numerical V_opt')
-plt.plot(states, J_0_opt_plot, color='blue',linestyle='-', label='J_opt')
-
-plt.xlabel("State, i")
-plt.ylabel("Optimal cost")
+plt.xlabel("State, $i$")
+plt.ylabel("Discounted cost")
 plt.legend()
 plt.show()
+
+#################################################################################
+
+# Absolute difference between numerical and analytic values.
+analytic_diff = np.abs(V_opt_plot - J_f1_plot)
+
+# Maximum absolute difference.
+max_diff = np.max(analytic_diff)
+print("Maximum absolute difference:", max_diff)
