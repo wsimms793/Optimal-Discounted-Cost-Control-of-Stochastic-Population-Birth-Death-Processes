@@ -337,10 +337,9 @@ for beta, gamma, N, alpha, b, P, C in parameters:
     # Print results
 
     print("Beta =", beta)
-    print("Gamma =", gamma)
+    print("Gamma =", gamma + b)
     print("N =", N)
     print("Alpha =", alpha)
-    print("b =", b)
     print("P =", P)
     print("C =", C)
     print("Numerical m =", numerical_m)
