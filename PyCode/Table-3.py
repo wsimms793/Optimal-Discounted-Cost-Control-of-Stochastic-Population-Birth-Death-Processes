@@ -312,20 +312,7 @@ for beta, gamma, N, alpha, P, C in parameters:
     else:
         numerical_m = int(intervention_states[0])
 
-#############################################################################
-    # Approximate threshold
 
-    approximate_m = min(
-        int(
-            np.ceil(
-                (N * (gamma - beta) / beta)
-                * (
-                    np.exp(C * beta / (P * N)) - 1
-                )
-            )
-        ),
-        N
-    )
 
 #############################################################################
     # Print results
@@ -337,6 +324,5 @@ for beta, gamma, N, alpha, P, C in parameters:
     print("P =", P)
     print("C =", C)
     print("Numerical m =", numerical_m)
-    print("Approximate m =", approximate_m)
     print("Final f =", f)
     print()
