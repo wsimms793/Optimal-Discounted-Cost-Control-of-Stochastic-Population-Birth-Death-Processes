@@ -88,6 +88,9 @@ def cost(P, C, f, N):
     for i in range(N + 1): 
         cost_array[i] = i * P + C * (1 - f[i]) 
  
+    cost_array[N] = N * P
+
+
     return cost_array 
  
  
@@ -267,12 +270,7 @@ for beta, gamma, N, alpha, P, C in parameters:
     else: 
         numerical_m = intervention_states[0] 
  
-    approximate_m = min( 
-        (np.ceil( 
-            1 / (np.exp(C * beta / (P * N)) - 1) 
-        )), 
-        N - 1 
-    ) 
+
  
  
     print("Beta =", beta) 
@@ -281,7 +279,6 @@ for beta, gamma, N, alpha, P, C in parameters:
     print("Alpha =", alpha) 
     print("P =", P) 
     print("C =", C) 
-    print("Approximate m =", approximate_m) 
     print("Numerical m =", numerical_m) 
     print("Final policy =", f) 
     print()
