@@ -2,7 +2,7 @@
 
 Author: William C. C. Simms
 
-Project Advisors: Dante M. Lopez and Hélène Guérin
+Project Advisors: Hélène Guérin and Dante Mata.
 
 ## Overview
 
